@@ -1,7 +1,7 @@
 page-chat {
     div,
     span {
-        height: 100%;
+        //height: 100%;
         width: 100%;
         overflow: hidden;
         padding: 0;
@@ -264,7 +264,7 @@ page-chat {
         height: 100%;
         /*width: 100%;*/
         border-left: 1px solid rgba(0, 0, 0, .08);
-        /*overflow-y: auto;*/
+        overflow-y: auto;
     }
     .message {
         padding: 0 !important;
@@ -294,17 +294,17 @@ page-chat {
     .message-body {
         margin: 0 !important;
         padding: 0 !important;
-        width: auto;
+        width: 100%;
         height: auto;
     }
     .message-main-receiver {
         /*padding: 10px 20px;*/
-        max-width: 60%;
+        max-width: 100%;
     }
     .message-main-sender {
         padding: 3px 20px !important;
-        margin-left: 40% !important;
-        max-width: 60%;
+        //margin-left: 40% !important;
+        max-width: 100%;
     }
     .message-text {
         margin: 0 !important;
@@ -322,7 +322,7 @@ page-chat {
         color: #9a9a9a;
     }
     .receiver {
-        width: auto !important;
+        //width: auto !important;
         padding: 4px 10px 7px !important;
         border-radius: 10px 10px 10px 0;
         background: #ffffff;
@@ -514,5 +514,8 @@ page-chat {
             padding: 5px 2px 5px 0 !important;
             font-size: 1.8em !important;
         }
+    }
+    .scroll-content {
+        overflow-y: hidden;
     }
 }
