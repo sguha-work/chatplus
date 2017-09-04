@@ -7,6 +7,7 @@ import { AfterViewInit } from '@angular/core';
 import { SearchPage } from './../search/search';
 
 import * as $ from 'jquery';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
