@@ -10,7 +10,9 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ChatPage } from '../pages/chat/chat';
 import { LockPage } from '../pages/lock/lock';
-
+import { ConversationPage } from '../pages/conversation/conversation';
+import {HeadingPage} from '../pages/heading/heading';
+import {ContactsPage} from '../pages/contacts/contacts';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,7 +27,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     SignupPage,
     ChatPage,
-    LockPage
+    LockPage,
+    ConversationPage,
+    HeadingPage,
+    ContactsPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     SignupPage,
     ChatPage,
-    LockPage
+    LockPage,
+    ConversationPage,
+    HeadingPage,
+    ContactsPage
   ],
   providers: [
     StatusBar,
