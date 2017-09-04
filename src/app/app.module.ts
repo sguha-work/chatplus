@@ -8,7 +8,7 @@ import { PeoplePage } from '../pages/people/people';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import { ChatPage } from '../pages/chat/chat';
+//import { ChatPage } from '../pages/chat/chat';
 import { LockPage } from '../pages/lock/lock';
 import { ConversationPage } from '../pages/conversation/conversation';
 import {HeadingPage} from '../pages/heading/heading';
@@ -26,7 +26,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsControllerPage,
     LoginPage,
     SignupPage,
-    ChatPage,
+    //ChatPage,
     LockPage,
     ConversationPage,
     HeadingPage,
@@ -45,7 +45,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsControllerPage,
     LoginPage,
     SignupPage,
-    ChatPage,
+    //ChatPage,
     LockPage,
     ConversationPage,
     HeadingPage,

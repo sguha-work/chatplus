@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {ChatPage} from "./../chat/chat";
+import {ConversationPage} from './../conversation/conversation';
+import {HeadingPage} from './../heading/heading';
+import {ContactsPage} from './../contacts/contacts';
+import { AfterViewInit } from '@angular/core';
+import * as $ from 'jquery';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage  implements AfterViewInit{
 
   constructor(public navCtrl: NavController) {
   }
-  
+  ngAfterViewInit() {
+    if($(window).width() < 800) {
+      $("page-conversation").hide();
+    }
+  }
 }
