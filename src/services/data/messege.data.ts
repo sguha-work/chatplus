@@ -1,4 +1,4 @@
-{
+const data = `{
     "CANT_READ_PHONE_NUMBER": {
         "en": "Cannot read the phone number.",
         "hin": "फ़ोन नंबर पढ़ नहीं सकते"
@@ -10,5 +10,11 @@
     "UNABLE_TO_DELIVER_MESSEGE": {
         "en": "Unable to deliver messege. Please try after sometime.",
         "hin": "संदेश वितरित करने में असमर्थ, कृपया कुछ देर बाद प्रयास करें।"
+    }
+}`;
+export class MessegeData {
+    public static data: any;
+    constructor() {
+        MessegeData.data = JSON.parse(data);
     }
 }

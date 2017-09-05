@@ -14,7 +14,7 @@ import { ConversationPage } from '../pages/conversation/conversation';
 import {HeadingPage} from '../pages/heading/heading';
 import {ContactsPage} from '../pages/contacts/contacts';
 import { Sim } from '@ionic-native/sim';
-
+import {File} from '@ionic-native/file';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -24,6 +24,7 @@ import {SimService} from "./../services/sim.service";
 import {MessageService} from "./../services/message.service";
 import {LanguageService} from "./../services/language.service";
 import {ConfigService} from "./../services/config.service";
+import {FileHandler} from "./../services/fileHandler.service";
 
 @NgModule({
   declarations: [
@@ -66,11 +67,13 @@ import {ConfigService} from "./../services/config.service";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CommonService,
+    File,
     Sim,
     SimService,
     MessageService,
     LanguageService,
-    ConfigService
+    ConfigService,
+    FileHandler
   ]
 })
 export class AppModule {}
