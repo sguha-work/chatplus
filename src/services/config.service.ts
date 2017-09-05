@@ -8,7 +8,7 @@ export class ConfigService {
     constructor(private file: FileHandler, private sim: SimService) {
 
     }
-    private prepareConfigObject(): Promise<any> {
+    private prepareConfigObject(): Promise<any> {alert("prepareConfigObject");
         let configObject: any;
         configObject = {};
         return new Promise((resolve, reject) => {
@@ -23,13 +23,13 @@ export class ConfigService {
         });
     }
 
-    private getPhoneNumberFromSim(): Promise<any> {
+    private getPhoneNumberFromSim(): Promise<any> {alert("getPhoneNumberFromSim");
         return new Promise((resolve, reject) => {
             this.sim.requestReadPermission().then(() => {
-                this.sim.getPhoneNumbers().then((phoneNumbersData) => {
+                this.sim.getPhoneNumbers().then((phoneNumbersData) => {alert(JSON.stringify(phoneNumbersData));
                     // phone numbers collected
                     resolve(phoneNumbersData);
-                }).catch(() => {
+                }).catch(() => {alert("rejected")
                     // can't read phone number from sim
                     reject();
                 });
@@ -42,7 +42,7 @@ export class ConfigService {
 
     private writeConfigData(configData): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.file.writeFile(JSON.stringify(configData), "config", "config").then(() => {
+            this.file.writeFile(JSON.stringify(configData), "config").then(() => {
                 // config file write done
                 resolve();
             }).catch(() => {
@@ -52,11 +52,12 @@ export class ConfigService {
         });
     }
 
-    public prepareAndWriteInitialConfigData(): Promise<any> {
+    public prepareAndWriteInitialConfigData(): Promise<any> {alert("prepareAndWriteInitialConfigData")
         return new Promise((resolve, reject) => {
             this.prepareConfigObject().then((configObject) => {
                 this.writeConfigData(configObject).then(() => {
                     // config write done
+                    
                     resolve();
                 }).catch(() => {
                     // config write failed
@@ -70,7 +71,7 @@ export class ConfigService {
 
     public checkIfConfigFileExists(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.file.checkIfFileExists("config", "config").then((value) => {
+            this.file.checkIfFileExists("config").then((value) => {
                 if(value) {
                     resolve();
                 } else {

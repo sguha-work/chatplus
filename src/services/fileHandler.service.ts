@@ -30,9 +30,9 @@ export class FileHandler {
         });
     }
 
-    public checkIfFileExists(fileName: string, folderName: string): Promise<any> {
+    public checkIfFileExists(fileName: string): Promise<any> {
         let directoryPath = this.getDirectoryPath();
-        directoryPath += ("/"+folderName);
+        //directoryPath += ("/"+folderName);
         return new Promise((resolve, reject) => {
             this.file.checkFile(directoryPath, fileName).then((value) => {
                 resolve(value);
@@ -58,13 +58,13 @@ export class FileHandler {
         });
     }
 
-    public writeFile(data: string, fileName: string, folderName: string): Promise<any> {
+    public writeFile(data: string, fileName: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.checkIfFileExists(fileName, folderName).then(() => {
+            this.checkIfFileExists(fileName).then(() => {
                 // file already exists, rewriting
             }).catch(() => {
                 // file doesn't exists writing
-                
+
             });
         });
     }

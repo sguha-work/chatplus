@@ -17,7 +17,7 @@ import * as $ from 'jquery';
 export class HomePage  implements AfterViewInit{
 
   constructor(public navCtrl: NavController, private config: ConfigService) {
-    this.checkIfFolderExists().then(() => {
+    this.checkIfConfigFileExists().then(() => {
       // folder exists, starting application
       this.startApplication();
     }).catch(() => {
@@ -27,6 +27,7 @@ export class HomePage  implements AfterViewInit{
         this.startApplication();
       }).catch(() => {
         // cannot start module show error
+        alert("cannot start module");
       });
     });
     
@@ -36,7 +37,7 @@ export class HomePage  implements AfterViewInit{
 
   }
 
-  private checkIfFolderExists(): Promise<any> {
+  private checkIfConfigFileExists(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.config.checkIfConfigFileExists().then(() => {
         resolve();
@@ -46,21 +47,18 @@ export class HomePage  implements AfterViewInit{
     });
   }
 
-  private initialSetup(): Promise<any> {
+  private initialSetup(): Promise<any> {alert("initial setup")
     return new Promise((resolve, reject) => {
-      this.checkAndCreateInitialFolders().then(() => {
-        // initial folder creation done
-        this.checkAndCreateConfigFiles().then(() => {
+      this.checkAndCreateConfigFiles().then(() => {
+          // config files creation done
+          alert("config files creation done");
           resolve();
         }).catch(() => {
+          // config file creation failed
+          alert("config file creation failed");
           reject();
         });
-      }).catch(() => {
-        // initial folder creation failed
-        reject();
       });
-      
-    });
   }
 
   checkAndCreateInitialFolders(): Promise<any> {
@@ -81,7 +79,7 @@ export class HomePage  implements AfterViewInit{
     });
   }
 
-  checkAndCreateConfigFiles(): Promise<any> {
+  checkAndCreateConfigFiles(): Promise<any> {alert("checkAndCreateConfigFiles");
     return new Promise((resolve, reject) => {
       this.config.prepareAndWriteInitialConfigData().then(() => {
         // initial config file created
