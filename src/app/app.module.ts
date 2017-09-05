@@ -13,11 +13,17 @@ import { LockPage } from '../pages/lock/lock';
 import { ConversationPage } from '../pages/conversation/conversation';
 import {HeadingPage} from '../pages/heading/heading';
 import {ContactsPage} from '../pages/contacts/contacts';
+import { Sim } from '@ionic-native/sim';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+// custom services
 import {CommonService} from "./../services/common.service";
+import {SimService} from "./../services/sim.service";
+import {MessageService} from "./../services/message.service";
+import {LanguageService} from "./../services/language.service";
+import {ConfigService} from "./../services/config.service";
 
 @NgModule({
   declarations: [
@@ -59,7 +65,12 @@ import {CommonService} from "./../services/common.service";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CommonService
+    CommonService,
+    Sim,
+    SimService,
+    MessageService,
+    LanguageService,
+    ConfigService
   ]
 })
 export class AppModule {}

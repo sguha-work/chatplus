@@ -6,6 +6,8 @@ import {ContactsPage} from './../contacts/contacts';
 import { AfterViewInit } from '@angular/core';
 import { SearchPage } from './../search/search';
 
+import { ConfigService } from './../../services/config.service';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -14,8 +16,84 @@ import * as $ from 'jquery';
 })
 export class HomePage  implements AfterViewInit{
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private config: ConfigService) {
+    this.checkIfFolderExists().then(() => {
+      // folder exists, starting application
+      this.startApplication();
+    }).catch(() => {
+      // folder doesn't exists, creating
+      this.initialSetup().then(() => {
+        // initial setup done
+        this.startApplication();
+      }).catch(() => {
+        // cannot start module show error
+      });
+    });
+    
   }
+
+  private startApplication() {
+
+  }
+
+  private checkIfFolderExists(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.config.checkIfConfigFileExists().then(() => {
+        resolve();
+      }).catch(() => {
+        reject();
+      });
+    });
+  }
+
+  private initialSetup(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.checkAndCreateInitialFolders().then(() => {
+        // initial folder creation done
+        this.checkAndCreateConfigFiles().then(() => {
+          resolve();
+        }).catch(() => {
+          reject();
+        });
+      }).catch(() => {
+        // initial folder creation failed
+        reject();
+      });
+      
+    });
+  }
+
+  checkAndCreateInitialFolders(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.config.createConfigFolder().then(() => {
+        // config folder creation success
+        this.config.createDataFolder().then(() => {
+          // data folder creation success
+          resolve();
+        }).catch(() => {
+          // data folder creation failed
+          reject();
+        });
+      }).catch(() => {
+        // config folder creation failed
+        reject();
+      });
+    });
+  }
+
+  checkAndCreateConfigFiles(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.config.prepareAndWriteInitialConfigData().then(() => {
+        // initial config file created
+        resolve();
+      }).catch(() => {
+        // config file creation failed
+        reject();
+      });
+    });
+    
+  }
+
   ngAfterViewInit() {
     if($(window).width() < 800) {
       $("page-conversation").hide();

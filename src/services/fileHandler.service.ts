@@ -8,7 +8,7 @@ const userFolderName = "user";
 const configFolderName = "config";
 
 @Injectable()
-export class FileHandeler {
+export class FileHandler {
     
     constructor(private file: File,private event: Events) {
         //this.checkAndCreateDirectory()
@@ -26,6 +26,45 @@ export class FileHandeler {
             }).catch(() => {
                 resolve(false);
                 reject();
+            });
+        });
+    }
+
+    public checkIfFileExists(fileName: string, folderName: string): Promise<any> {
+        let directoryPath = this.getDirectoryPath();
+        directoryPath += ("/"+folderName);
+        return new Promise((resolve, reject) => {
+            this.file.checkFile(directoryPath, fileName).then((value) => {
+                resolve(value);
+            }).catch(() => {
+                reject();
+            });
+        });
+    }
+
+    public createDirectory(directoryName: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let directoryPath = this.getDirectoryPath();
+            this.checkIfDirectoryExists(directoryName).then(() => {
+                resolve();
+            }).catch(() => {
+                this.file.createDir(directoryPath, directoryName, false).then(() => {
+                    resolve();
+                }).catch(() => {
+                    reject();
+                });
+            });
+            
+        });
+    }
+
+    public writeFile(data: string, fileName: string, folderName: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.checkIfFileExists(fileName, folderName).then(() => {
+                // file already exists, rewriting
+            }).catch(() => {
+                // file doesn't exists writing
+                
             });
         });
     }
