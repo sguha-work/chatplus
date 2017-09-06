@@ -27,14 +27,14 @@ export class HomePage  implements AfterViewInit{
         this.startApplication();
       }).catch(() => {
         // cannot start module show error
-        alert("cannot start module");
+        
       });
     });
     
   }
 
   private startApplication() {
-
+    alert("application started");
   }
 
   private checkIfConfigFileExists(): Promise<any> {
@@ -51,11 +51,9 @@ export class HomePage  implements AfterViewInit{
     return new Promise((resolve, reject) => {
       this.checkAndCreateConfigFiles().then(() => {
           // config files creation done
-          alert("config files creation done");
           resolve();
         }).catch(() => {
           // config file creation failed
-          alert("config file creation failed");
           reject();
         });
       });
@@ -79,7 +77,7 @@ export class HomePage  implements AfterViewInit{
     });
   }
 
-  checkAndCreateConfigFiles(): Promise<any> {alert("checkAndCreateConfigFiles");
+  private checkAndCreateConfigFiles(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.config.prepareAndWriteInitialConfigData().then(() => {
         // initial config file created
