@@ -25,12 +25,19 @@ export class HomePage  implements AfterViewInit{
       this.initialSetup().then(() => {
         // initial setup done
         this.startApplication();
-      }).catch(() => {
+      }).catch((messege) => {
         // cannot start module show error
-        
+        if(typeof messege !== "undefined") {
+          alert(messege);
+        }
+        this.shutDownApplication();
       });
     });
     
+  }
+
+  private shutDownApplication() {
+    navigator['app'].exitApp();
   }
 
   private startApplication() {

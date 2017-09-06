@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import { Sim } from '@ionic-native/sim';
-//import {FileHandler} from './filehandler.service';
+import {MessageService} from './message.service';
 
 @Injectable()
 export class SimService {
-   constructor(private sim: Sim) {
+   constructor(private sim: Sim, private message: MessageService) {
    }
 
    public getPhoneNumbers(): Promise<any> {
@@ -20,7 +20,7 @@ export class SimService {
                         }
                     }
                     if(!phoneNumberArray.length) {
-                        reject();
+                        reject(this.message.getMessage("NO_SIM_IN_DEVICE"));
                     }
                     resolve(phoneNumberArray);
                 } else {
@@ -28,7 +28,7 @@ export class SimService {
                     resolve(phoneNumberArray);
                 }
             }).catch(() => {
-                reject();
+                reject(this.message.getMessage("UNABLE_TO_GET_SIM_INFO"));
             });
        });
        
@@ -39,42 +39,9 @@ export class SimService {
             this.sim.requestReadPermission().then(() => {
                 resolve();
             }).catch(() => {
-                reject();
+                reject(this.message.getMessage("SIM_READ_PERMISSION_DENIED"));
             });
     });
     
    }
-
-//    public checkAndPrepareSimInfoIfNotExists() {
-//        this.file.readFile("user", "config").then(() => {
-//            // good, user file exists
-//        }).catch(() => {
-//             this.sim.requestReadPermission().then(() => {
-//                 this.getSimInfo().then((phoneNumber) => {
-//                     let user = {};
-//                     user["phoneNumber"] = phoneNumber;
-//                         this.file.writeFile("user", JSON.stringify(user), "config");
-//                 }, () => {
-//                     alert("Permission denied. Import/export will not work");
-//                 });
-//             }).catch(() => {
-//                 alert("Permission denied. Import/export will not work");
-//             });
-//        });
-       
-    
-//   } 
-
-//    public getUserSIM1Number(): Promise<any> {
-//     return new Promise((resolve, reject) => {
-//         this.file.readFile("user", "config").then((data) => {
-//             let userData = JSON.parse(data);
-//             resolve(userData.phoneNumber);
-//         }).catch(() => {
-//             alert("cannot get user sim1 number. Import/export will not work");
-//             reject();
-//         });
-//     });
-//    }
-   
 }

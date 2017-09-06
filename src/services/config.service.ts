@@ -8,14 +8,21 @@ export class ConfigService {
     constructor(private file: FileHandler, private sim: SimService) {
 
     }
+    private getDeviceDefaultLanguage(): string {
+        return "en";
+    }
     private prepareConfigObject(): Promise<any> {
         let configObject: any;
         configObject = {};
         return new Promise((resolve, reject) => {
             this.getPhoneNumberFromSim().then((phoneNumberData) => {
+                
+                // preparing initial config object
                 configObject.phoneNumbers = phoneNumberData;
                 configObject.defaultPhoneNumber = phoneNumberData[0];
-                
+                configObject.applicationLanguage = this.getDeviceDefaultLanguage();
+                // initial config object prepared
+
                 resolve(configObject);
             }).catch(() => {
                 reject();

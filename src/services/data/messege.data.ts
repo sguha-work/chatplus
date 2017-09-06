@@ -10,6 +10,18 @@ const data = `{
     "UNABLE_TO_DELIVER_MESSEGE": {
         "en": "Unable to deliver messege. Please try after sometime.",
         "hin": "संदेश वितरित करने में असमर्थ, कृपया कुछ देर बाद प्रयास करें।"
+    },
+    "SIM_READ_PERMISSION_DENIED": {
+        "en": "You denied reading SIM information, cannot start application.",
+        "hin": ""
+    },
+    "UNABLE_TO_GET_SIM_INFO": {
+        "en": "Unable to read SIM information cannot start application.",
+        "hin": ""
+    },
+    "NO_SIM_IN_DEVICE": {
+        "en": "No SIM card detected in device, Unable to start application",
+        "hin": ""
     }
 }`;
 export class MessegeData {
