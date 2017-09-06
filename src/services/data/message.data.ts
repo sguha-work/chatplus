@@ -24,9 +24,9 @@ const data = `{
         "hin": ""
     }
 }`;
-export class MessegeData {
+export class MessageData {
     public static data: any;
     constructor() {
-        MessegeData.data = JSON.parse(data);
+        MessageData.data = JSON.parse(data);
     }
 }

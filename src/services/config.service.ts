@@ -24,8 +24,8 @@ export class ConfigService {
                 // initial config object prepared
 
                 resolve(configObject);
-            }).catch(() => {
-                reject();
+            }).catch((message) => {
+                reject(message);
             });
         });
     }
@@ -36,13 +36,13 @@ export class ConfigService {
                 this.sim.getPhoneNumbers().then((phoneNumbersData) => {
                     // phone numbers collected
                     resolve(phoneNumbersData);
-                }).catch(() => {
+                }).catch((message) => {
                     // can't read phone number from sim
-                    reject();
+                    reject(message);
                 });
-            }).catch(() => {
+            }).catch((message) => {
                 // read permission denied
-                reject();
+                reject(message);
             });
         });
     }
@@ -67,12 +67,12 @@ export class ConfigService {
                     // config write done
                     
                     resolve();
-                }).catch(() => {
+                }).catch((message) => {
                     // config write failed
-                    reject();
+                    reject(message);
                 });
-            }).catch(() => {
-                reject();
+            }).catch((message) => {
+                reject(message);
             });
         });
     }
