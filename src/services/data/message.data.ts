@@ -26,6 +26,10 @@ const data = `{
     "UNABLE_TO_READ_FILE": {
         "en": "Can't read file",
         "hin": ""
+    },
+    "UNABLE_TO_DETECT_SIM": {
+        "en": "Unable to detect SIM card, app cannot be loaded",
+        "hin": ""
     }
 }`;
 export class MessageData {
