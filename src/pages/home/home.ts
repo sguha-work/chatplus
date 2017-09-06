@@ -5,6 +5,7 @@ import {HeadingPage} from './../heading/heading';
 import {ContactsPage} from './../contacts/contacts';
 import { AfterViewInit } from '@angular/core';
 import { SearchPage } from './../search/search';
+import { Events } from 'ionic-angular';
 
 import { ConfigService } from './../../services/config.service';
 
@@ -16,7 +17,7 @@ import * as $ from 'jquery';
 })
 export class HomePage  implements AfterViewInit{
 
-  constructor(public navCtrl: NavController, private config: ConfigService) {
+  constructor(public navCtrl: NavController, private config: ConfigService, public events: Events) {
     this.checkIfConfigFileExists().then(() => {
       // folder exists, starting application
       this.startApplication();
@@ -41,9 +42,8 @@ export class HomePage  implements AfterViewInit{
   }
 
   private startApplication() {
-    alert("application started");
     this.config.getInformation().then((data) => {
-      alert(JSON.stringify(data));
+      this.events.publish("USER-INFO-RECEIVED", data);
     }).catch((message) => {
       alert(message);
       this.shutDownApplication();
