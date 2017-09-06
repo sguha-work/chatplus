@@ -7,11 +7,11 @@ export class SimService {
    constructor(private sim: Sim) {
    }
 
-   public getPhoneNumbers(): Promise<any> {alert("getPhoneNumbers");
+   public getPhoneNumbers(): Promise<any> {
        let phoneNumberArray;
        phoneNumberArray = [];
        return new Promise((resolve, reject) => {
-        this.sim.getSimInfo().then((info) => {alert("hello"+JSON.stringify(info));
+        this.sim.getSimInfo().then((info) => {
                 if(info.phoneNumber.toString() === "") {
                     phoneNumberArray.push(info.cards[0].phoneNumber);
                     for(let index=0; index<info.crads.length; index++) {
@@ -34,7 +34,7 @@ export class SimService {
        
    }
 
-   public requestReadPermission(): Promise<any> {alert("requestReadPermission");
+   public requestReadPermission(): Promise<any> {
     return new Promise((resolve, reject) => {
             this.sim.requestReadPermission().then(() => {
                 resolve();
