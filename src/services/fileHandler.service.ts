@@ -67,16 +67,16 @@ export class FileHandler {
         return new Promise((resolve, reject) => {
             this.checkIfFileExists(fileName).then(() => {
                 // file already exists, rewriting
-                this.file.writeExistingFile(directoryPath, fileName, data).then(() => {alert("rewrite done");
+                this.file.writeExistingFile(directoryPath, fileName, data).then(() => {
                     resolve();
                 }).catch(() => {alert("rewrite failed");
                     reject();
                 });
             }).catch(() => {
                 // file doesn't exists writing
-                this.file.writeFile(directoryPath, fileName, data).then(() => {alert("write done");
+                this.file.writeFile(directoryPath, fileName, data).then(() => {
                     resolve();
-                }).catch(() => {alert("write failed");
+                }).catch(() => {
                     reject();
                 });
             });
