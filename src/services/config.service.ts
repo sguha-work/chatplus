@@ -2,14 +2,15 @@ import {Injectable} from '@angular/core';
 import { Events } from 'ionic-angular';
 import {FileHandler} from "./fileHandler.service";
 import {SimService} from "./sim.service";
+import {LanguageService} from "./language.service";
 
 @Injectable()
 export class ConfigService {
-    constructor(private file: FileHandler, private sim: SimService) {
+    constructor(private file: FileHandler, private sim: SimService, private language: LanguageService) {
 
     }
     private getDeviceDefaultLanguage(): string {
-        return "en";
+        return this.language.getPresentLanguage();
     }
     private prepareConfigObject(): Promise<any> {
         let configObject: any;
