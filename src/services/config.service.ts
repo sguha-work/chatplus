@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import { Events } from 'ionic-angular';
 import {FileHandler} from "./fileHandler.service";
-import {SimService} from "./sim.service";
 import {LanguageService} from "./language.service";
+import {SimService} from "./sim.service";
+
 
 @Injectable()
 export class ConfigService {
@@ -105,5 +106,16 @@ export class ConfigService {
                 reject();
             });
         });
+    }
+
+    public getInformation(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.file.readFileContent("config").then((data) => {
+                resolve(JSON.parse(data));
+            }).catch((message) => {
+                reject(message);
+            });
+        });
+        
     }
 }

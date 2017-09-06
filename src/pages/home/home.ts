@@ -42,6 +42,12 @@ export class HomePage  implements AfterViewInit{
 
   private startApplication() {
     alert("application started");
+    this.config.getInformation().then((data) => {
+      alert(JSON.stringify(data));
+    }).catch((message) => {
+      alert(message);
+      this.shutDownApplication();
+    });
   }
 
   private checkIfConfigFileExists(): Promise<any> {
@@ -54,7 +60,7 @@ export class HomePage  implements AfterViewInit{
     });
   }
 
-  private initialSetup(): Promise<any> {
+  private initialSetup(): Promise<any> {alert("initial");
     return new Promise((resolve, reject) => {
       this.checkAndCreateConfigFiles().then(() => {
           // config files creation done

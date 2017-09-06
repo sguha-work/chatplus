@@ -22,6 +22,10 @@ const data = `{
     "NO_SIM_IN_DEVICE": {
         "en": "No SIM card detected in device, Unable to start application",
         "hin": ""
+    },
+    "UNABLE_TO_READ_FILE": {
+        "en": "Can't read file",
+        "hin": ""
     }
 }`;
 export class MessageData {

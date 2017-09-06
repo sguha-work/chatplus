@@ -1,12 +1,13 @@
 import { File } from '@ionic-native/file';
 import {Injectable} from '@angular/core';
 import { Events } from 'ionic-angular';
+import {MessageService} from './message.service';
 
 const rootFolderName = "SMSPlus";
 @Injectable()
 export class FileHandler {
     
-    constructor(private file: File,private event: Events) {
+    constructor(private file: File,private event: Events, private message: MessageService) {
         this.checkAndCreateDirectory()
     }
 
@@ -79,6 +80,16 @@ export class FileHandler {
                 }).catch(() => {
                     reject();
                 });
+            });
+        });
+    }
+
+    public readFileContent(fileName: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.file.readAsText(this.getDirectoryPath(), fileName).then((data) => {
+                resolve(data);
+            }).catch(() => {
+                reject(this.message.getMessage("UNABLE_TO_READ_FILE"));
             });
         });
     }
