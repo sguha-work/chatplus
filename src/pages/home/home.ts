@@ -29,7 +29,7 @@ export class HomePage  implements AfterViewInit{
         // cannot start module show error
         if(typeof messege !== "undefined") {
           alert(messege);
-        }
+        }alert("error");
         this.shutDownApplication();
       });
     });
