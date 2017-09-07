@@ -49,6 +49,25 @@ export class SignupPage {
     }
     return true;
   }
+
+  
+
+  private disableSignUpButton() {
+    $("#button_signup").prop("disabled", "disabled").css({
+      "opacity": "0.5"
+    });
+  }
+
+  private enableSignUpButton() {
+    $("#button_signup").removeAttr("disabled").css({
+      "opacity": "1"
+    });
+  }
+
+  beginSignUp() {
+    let phoneNumber = $("#txt_userPhoneNumber").val().trim();
+  }
+
   goToLoginPage() {
     this.common.showPage("page-login");
   }

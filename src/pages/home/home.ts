@@ -68,33 +68,11 @@ export class HomePage  implements AfterViewInit{
 
   private initialSetup(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.checkAndCreateConfigFiles().then(() => {
-          // config files creation done
-          resolve();
-        }).catch((message) => {
-          // config file creation failed
-          reject(message);
-        });
-      });
-  }
-
-  checkAndCreateInitialFolders(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.config.createConfigFolder().then(() => {
-        // config folder creation success
-        this.config.createDataFolder().then(() => {
-          // data folder creation success
-          resolve();
-        }).catch(() => {
-          // data folder creation failed
-          reject();
-        });
-      }).catch(() => {
-        // config folder creation failed
-        reject();
-      });
+     resolve();
     });
   }
+
+  
 
   private checkAndCreateConfigFiles(): Promise<any> {
     return new Promise((resolve, reject) => {

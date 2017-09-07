@@ -52,13 +52,13 @@ export class LoginPage {
   }
 
   private disableLogInButton() {
-    $("button").prop("disabled", "disabled").css({
+    $("#button_login").prop("disabled", "disabled").css({
       "opacity": "0.5"
     });
   }
 
   private enableLogInButton() {
-    $("button").removeAttr("disabled").css({
+    $("#button_login").removeAttr("disabled").css({
       "opacity": "1"
     });
   }
@@ -67,7 +67,7 @@ export class LoginPage {
     alert("done");
   }
 
-  private beginSignUpProcess(loginObject: any) {
+  private beginLogInProcess(loginObject: any) {
     this.disableLogInButton();
     this.database.getFromDatabase(loginObject.phoneNumber).then((data) => {
       if(data===null) {
@@ -103,7 +103,7 @@ export class LoginPage {
     let phoneNumber = $("#txt_userPhoneNumber").val().trim();
     let password = $("#txt_password").val().trim();
     if(this.validate(phoneNumber, password) === true) {
-      this.beginSignUpProcess(this.prepareLoginObject(phoneNumber, password));
+      this.beginLogInProcess(this.prepareLoginObject(phoneNumber, password));
     } else {
       return false;
     }
