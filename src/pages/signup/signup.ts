@@ -13,6 +13,7 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController,  private common: CommonService, private database: Database,  private message: MessageService) {
   }
+
   private validate(phn: string, password: string): boolean {
     let phoneNumberDOM = $("#txt_userPhoneNumber");
     let passwordDOM = $("#txt_password");
@@ -64,9 +65,33 @@ export class SignupPage {
     });
   }
 
+  prepareSignUpObject(phoneNumber: string, password: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let signupObject: any;
+      signupObject = {};
+      signupObject.phoneNUmber = phoneNumber;
+      signupObject.password = password;
+      signupObject.userName = "";
+      signupObject.status = "";
+      resolve(signupObject);
+    });
+  }
+
+  beginSighUpProcess(signupObject: any) {
+
+  }
+
   beginSignUp() {
     let phoneNumber = $("page-signup #txt_userPhoneNumber").val().trim();
     let password = $("page-signup #txt_password").val().trim();
+    if(this.validate(phoneNumber, password)) {
+      this.prepareSignUpObject(phoneNumber, password).then((signupObject) => {
+        this.beginSighUpProcess(signupObject);
+      }).catch((message) => {
+        // signup object preparation failed
+      });
+      
+    }
   }
 
   goToLoginPage() {
