@@ -20,10 +20,13 @@ export class ConfigService {
             // this.getPhoneNumberFromSim().then((phoneNumberData) => {
                 
                 // preparing initial config object
-                configObject.phoneNumbers = "phoneNumberData";
-                configObject.defaultPhoneNumber = "phoneNumberData[0]";
+                configObject.phoneNumbers = "";
+                configObject.defaultPhoneNumber = "";
+                configObject.deviceId = "";
                 configObject.applicationLanguage = this.getDeviceDefaultLanguage();
                 configObject.userloggedin = false;
+                configObject.userPhoneNumber = "";
+                configObject.userPassword = "";
                 // initial config object prepared
 
                 resolve(configObject);

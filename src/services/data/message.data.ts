@@ -38,6 +38,10 @@ const data = `{
     "UNABLE_TO_CONTACT_DATABASE": {
         "en": "Cannot connec to database now. Please try latter",
         "hin": ""
+    },
+    "PHONENUMBER_PASSWORD_MISMATCH": {
+        "en": "Password mismatch with given phonenumber",
+        "hin": ""
     }
 }`;
 export class MessageData {

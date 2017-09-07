@@ -63,11 +63,21 @@ export class LoginPage {
     });
   }
 
+  private postLoginActivity(data: any) {
+    alert("done");
+  }
+
   private beginSignUpProcess(loginObject: any) {
     this.disableLogInButton();
     this.database.getFromDatabase(loginObject.phoneNumber).then((data) => {
       if(data===null) {
         alert(this.message.getMessage("PHONENUMBER_NOT_FOUND"));
+      } else {
+        if(data.password===loginObject.password) {
+          this.postLoginActivity(data);
+        } else {
+          alert(this.message.getMessage("PHONENUMBER_PASSWORD_MISMATCH"));
+        }
       }
       this.enableLogInButton();
     }).catch((error) => {
@@ -85,7 +95,6 @@ export class LoginPage {
   }
 
   public goToSignUpPage() {
-    alert("going to signup page");
     this.common.showPage("page-signup");
   }
   
