@@ -40,24 +40,39 @@ export class LoginPage {
 
     if(password === "" || password.length<5) {
       passwordDOM.css({
-        "border": "1px solide red"
+        "border-bottom": "1px solide red"
       });
       return false;
     } else {
       passwordDOM.css({
-        "border": "1px solide green"
+        "border-bottom": "1px solide green"
       });
     }
     return true;
   }
 
+  private disableLogInButton() {
+    $("button").prop("disabled", "disabled").css({
+      "opacity": "0.5"
+    });
+  }
+
+  private enableLogInButton() {
+    $("button").removeAttr("disabled").css({
+      "opacity": "1"
+    });
+  }
+
   private beginSignUpProcess(loginObject: any) {
+    this.disableLogInButton();
     this.database.getFromDatabase(loginObject.phoneNumber).then((data) => {
       if(data===null) {
         alert(this.message.getMessage("PHONENUMBER_NOT_FOUND"));
       }
+      this.enableLogInButton();
     }).catch((error) => {
       alert(this.message.getMessage("UNABLE_TO_CONTACT_DATABASE"));
+      this.enableLogInButton();
     });
   }
   
