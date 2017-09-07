@@ -30,6 +30,14 @@ const data = `{
     "UNABLE_TO_DETECT_SIM": {
         "en": "Unable to detect SIM card, app cannot be loaded",
         "hin": ""
+    },
+    "PHONENUMBER_NOT_FOUND": {
+        "en": "Provided phone number is not registerd to our database",
+        "hin": ""
+    },
+    "UNABLE_TO_CONTACT_DATABASE": {
+        "en": "Cannot connec to database now. Please try latter",
+        "hin": ""
     }
 }`;
 export class MessageData {
