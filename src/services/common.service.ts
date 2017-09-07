@@ -8,7 +8,9 @@ export class CommonService {
     public showPage(pageName: string): void {
         let pageArray = [
             "page-contacts",
-            "page-conversation"
+            "page-conversation",
+            "page-login",
+            "page-signup"
         ];
 
         for(let index=0; index<pageArray.length; index++) {

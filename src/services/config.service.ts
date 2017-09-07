@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import { Events } from 'ionic-angular';
 import {FileHandler} from "./fileHandler.service";
 import {LanguageService} from "./language.service";
-import {SimService} from "./sim.service";
+//import {SimService} from "./sim.service";
 
 
 @Injectable()
 export class ConfigService {
-    constructor(private file: FileHandler, private sim: SimService, private language: LanguageService) {
+    constructor(private file: FileHandler, private language: LanguageService) {
 
     }
     private getDeviceDefaultLanguage(): string {
@@ -17,37 +17,38 @@ export class ConfigService {
         let configObject: any;
         configObject = {};
         return new Promise((resolve, reject) => {
-            this.getPhoneNumberFromSim().then((phoneNumberData) => {
+            // this.getPhoneNumberFromSim().then((phoneNumberData) => {
                 
                 // preparing initial config object
-                configObject.phoneNumbers = phoneNumberData;
-                configObject.defaultPhoneNumber = phoneNumberData[0];
+                configObject.phoneNumbers = "phoneNumberData";
+                configObject.defaultPhoneNumber = "phoneNumberData[0]";
                 configObject.applicationLanguage = this.getDeviceDefaultLanguage();
+                configObject.userloggedin = false;
                 // initial config object prepared
 
                 resolve(configObject);
-            }).catch((message) => {
-                reject(message);
-            });
+            // }).catch((message) => {
+            //     reject(message);
+            // });
         });
     }
 
-    private getPhoneNumberFromSim(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.sim.requestReadPermission().then(() => {
-                this.sim.getPhoneNumbers().then((phoneNumbersData) => {
-                    // phone numbers collected
-                    resolve(phoneNumbersData);
-                }).catch((message) => {
-                    // can't read phone number from sim
-                    reject(message);
-                });
-            }).catch((message) => {
-                // read permission denied
-                reject(message);
-            });
-        });
-    }
+    // private getPhoneNumberFromSim(): Promise<any> {
+    //     return new Promise((resolve, reject) => {
+    //         this.sim.requestReadPermission().then(() => {
+    //             this.sim.getPhoneNumbers().then((phoneNumbersData) => {
+    //                 // phone numbers collected
+    //                 resolve(phoneNumbersData);
+    //             }).catch((message) => {
+    //                 // can't read phone number from sim
+    //                 reject(message);
+    //             });
+    //         }).catch((message) => {
+    //             // read permission denied
+    //             reject(message);
+    //         });
+    //     });
+    // }
 
     private writeConfigData(configData): Promise<any> {
         return new Promise((resolve, reject) => {

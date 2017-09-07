@@ -1,43 +1,16 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Signup
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding id="page6">
-  <form id="signup-form2">
-    <ion-list id="signup-list2">
-      <ion-item id="signup-input3">
-        <ion-label>
-          Name
-        </ion-label>
-        <ion-input type="text" placeholder=""></ion-input>
-      </ion-item>
-      <ion-item id="signup-input4">
-        <ion-label>
-          Email
-        </ion-label>
-        <ion-input type="email" placeholder=""></ion-input>
-      </ion-item>
-      <ion-item id="signup-input6">
-        <ion-label>
-          Mobile number
-        </ion-label>
-        <ion-input type="tel" placeholder=""></ion-input>
-      </ion-item>
-      <ion-item id="signup-input5">
-        <ion-label>
-          Password
-        </ion-label>
-        <ion-input type="text" placeholder=""></ion-input>
-      </ion-item>
-    </ion-list>
-    <button id="signup-button3" ion-button color="stable" block>
-      Sign up
-    </button>
-  </form>
-</ion-content>
+<div class="row heading">
+    <div class="col-sm-3 col-xs-3 heading-avatar" style="width: 50%">
+        <div class="heading-avatar-icon">
+            <img src="assets/images/no-photo.jpg">
+        </div>
+
+    </div>
+
+    <div class="col-sm-2 col-xs-2 heading-compose  pull-right" style="width: 50%">
+        <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true" (click)="displayContacts()"></i>
+    </div>
+    <div style="" class="div_phoneNumber">
+        <label style="width:33%;     margin-left: 35%;" class="lbl_phoneNumber" id="lbl_phoneNumber" (click)="changePhoneNumber()"></label>
+
+    </div>
+</div>

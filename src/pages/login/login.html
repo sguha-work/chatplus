@@ -1,35 +1,17 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Login
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding id="page5">
-  <form id="login-form1">
-    <ion-list id="login-list1">
-      <ion-item id="login-input1">
-        <ion-label>
-          Mobile Number
-        </ion-label>
-        <ion-input type="tel" placeholder=""></ion-input>
-      </ion-item>
-      <ion-item id="login-input2">
-        <ion-label>
-          Password
-        </ion-label>
-        <ion-input type="password" placeholder=""></ion-input>
-      </ion-item>
-    </ion-list>
-    <div class="spacer" style="height:40px;" id="login-spacer1"></div>
-    <button id="login-button1" ion-button color="stable" block>
-      Log in
-    </button>
-    <button id="login-button2" ion-button clear color="positive" block href-inappbrowser="/signup">
-      Or create an account
-    </button>
-  </form>
-</ion-content>
+<div class="row heading">
+
+</div>
+<div class="row" style="width: 100%">
+    <p class="loginHeading">Login through here</p>
+    <div class="col-sm-12 searchBox-inner">
+        <div class="form-group has-feedback">
+            <input id="txt_userPhoneNumber" type="text" class="form-control" name="searchText" placeholder="Phone number">
+            <input id="txt_password" type="password" class="form-control" name="searchText" placeholder="Password">
+            <button class="" (click)="goToLogin()">Tap me to Log in</button>
+        </div>
+
+    </div>
+</div>
+<div class="row" style="width: 100%">
+    <p class="loginFooter">Click <a href="javascript:void(0)" (click)="goToSignUpPage()">here</a> to join LIFEChat</p>
+</div>

@@ -20,7 +20,7 @@ export class HeadingPage  implements AfterViewInit{
   }
 
   private displayPhoneNumber(phoneNumber: string) {
-    $("#lbl_phoneNumber").text(phoneNumber);
+    //$("#lbl_phoneNumber").text(phoneNumber);
   }
 
   private populateData(data: any) {
@@ -28,9 +28,9 @@ export class HeadingPage  implements AfterViewInit{
   }
 
   private bindEvents() {
-    this.events.subscribe("USER-INFO-RECEIVED", (data) => {
-      this.populateData(data);
-    });
+    // this.events.subscribe("USER-INFO-RECEIVED", (data) => {
+    //   this.populateData(data);
+    // });
   }
 
   public displayContacts() {

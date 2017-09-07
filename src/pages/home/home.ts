@@ -8,7 +8,7 @@ import { SearchPage } from './../search/search';
 import { Events } from 'ionic-angular';
 
 import { ConfigService } from './../../services/config.service';
-
+import { CommonService } from './../../services/common.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -17,7 +17,7 @@ import * as $ from 'jquery';
 })
 export class HomePage  implements AfterViewInit{
 
-  constructor(public navCtrl: NavController, private config: ConfigService, public events: Events) {
+  constructor(public navCtrl: NavController, private config: ConfigService, public events: Events, private common: CommonService) {
     this.checkIfConfigFileExists().then(() => {
       // folder exists, starting application
       this.startApplication();
@@ -43,7 +43,13 @@ export class HomePage  implements AfterViewInit{
 
   private startApplication() {
     this.config.getInformation().then((data) => {
-      this.events.publish("USER-INFO-RECEIVED", data);
+      //this.events.publish("USER-INFO-RECEIVED", data);
+      if(!data.userloggedin) {
+        this.common.showPage("page-login");
+      } else {
+        this.common.showPage("page-contacts");
+      }
+      
     }).catch((message) => {
       alert(message);
       this.shutDownApplication();
