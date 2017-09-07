@@ -78,13 +78,18 @@ export class SignupPage {
   }
 
   beginSighUpProcess(signupObject: any) {
-
+      this.database.writeToDatabase(signupObject.phoneNUmber, signupObject).then(()=>{
+        alert("done sign up");
+      }).catch(() => {
+        alert(this.message.getMessage("UNABLE_TO_CONTACT_DATABASE"));
+      });
   }
 
   beginSignUp() {
     let phoneNumber = $("page-signup #txt_userPhoneNumber").val().trim();
     let password = $("page-signup #txt_password").val().trim();
     if(this.validate(phoneNumber, password)) {
+      this.disableSignUpButton();
       this.prepareSignUpObject(phoneNumber, password).then((signupObject) => {
         this.beginSighUpProcess(signupObject);
       }).catch((message) => {
