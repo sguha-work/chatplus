@@ -79,7 +79,8 @@ export class SignupPage {
 
   beginSighUpProcess(signupObject: any) {
       this.database.writeToDatabase(signupObject.phoneNUmber, signupObject).then(()=>{
-        alert("done sign up");
+        alert(this.message.getMessage("SIGN_UP_SUCCESS"));
+        this.common.showPage("page-login");
       }).catch(() => {
         alert(this.message.getMessage("UNABLE_TO_CONTACT_DATABASE"));
       });

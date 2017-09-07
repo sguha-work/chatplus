@@ -42,6 +42,10 @@ const data = `{
     "PHONENUMBER_PASSWORD_MISMATCH": {
         "en": "Password mismatch with given phonenumber",
         "hin": ""
+    },
+    "SIGN_UP_SUCCESS": {
+        "en": "Sign up successfull. Click Ok to go to sign in page",
+        "hin": ""
     }
 }`;
 export class MessageData {

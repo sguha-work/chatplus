@@ -64,7 +64,7 @@ export class LoginPage {
   }
 
   private postLoginActivity(data: any) {
-    alert("done");
+    this.common.showPage("page-contacts");
   }
 
   private beginLogInProcess(loginObject: any) {
