@@ -65,7 +65,8 @@ export class SignupPage {
   }
 
   beginSignUp() {
-    let phoneNumber = $("#txt_userPhoneNumber").val().trim();
+    let phoneNumber = $("page-signup #txt_userPhoneNumber").val().trim();
+    let password = $("page-signup #txt_password").val().trim();
   }
 
   goToLoginPage() {

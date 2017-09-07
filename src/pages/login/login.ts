@@ -99,9 +99,9 @@ export class LoginPage {
   }
   
 
-  public goToLogin() {
-    let phoneNumber = $("#txt_userPhoneNumber").val().trim();
-    let password = $("#txt_password").val().trim();
+  public beginLogin() {
+    let phoneNumber = $("page-login #txt_userPhoneNumber").val().trim();alert(phoneNumber);
+    let password = $("page-login #txt_password").val().trim();
     if(this.validate(phoneNumber, password) === true) {
       this.beginLogInProcess(this.prepareLoginObject(phoneNumber, password));
     } else {
