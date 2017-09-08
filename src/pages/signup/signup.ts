@@ -69,7 +69,7 @@ export class SignupPage {
     return new Promise((resolve, reject) => {
       let signupObject: any;
       signupObject = {};
-      signupObject.phoneNUmber = phoneNumber;
+      signupObject.phoneNumber = phoneNumber;
       signupObject.password = password;
       signupObject.userName = "";
       signupObject.status = "";
@@ -78,11 +78,13 @@ export class SignupPage {
   }
 
   beginSighUpProcess(signupObject: any) {
-      this.database.writeToDatabase(signupObject.phoneNUmber, signupObject).then(()=>{
+      this.database.writeToDatabase(signupObject.phoneNumber, signupObject).then(()=>{
         alert(this.message.getMessage("SIGN_UP_SUCCESS"));
         this.common.showPage("page-login");
+        this.enableSignUpButton();
       }).catch(() => {
         alert(this.message.getMessage("UNABLE_TO_CONTACT_DATABASE"));
+        this.enableSignUpButton();
       });
   }
 

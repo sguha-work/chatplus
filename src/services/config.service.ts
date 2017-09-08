@@ -66,6 +66,21 @@ export class ConfigService {
         });
     }
 
+    public updateAfterLogIn(logInData: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.getInformation().then((data) => {
+                //alert("data "+JSON.stringify(data));
+                let parsedData = JSON.parse(data);
+                parsedData.userloggedin = true;
+                parsedData.phoneNumber = logInData.phoneNumber;
+                parsedData.password = logInData.password;
+                alert(JSON.stringify(parsedData));
+            }).catch((message) => {
+                reject(message);
+            });
+        });
+    }
+
     public prepareAndWriteInitialConfigData(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.prepareConfigObject().then((configObject) => {

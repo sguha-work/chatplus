@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as $ from 'jquery';
 
+import { ConfigService } from './../../services/config.service';
 import { CommonService } from './../../services/common.service';
 import {Database} from './../../services/database.service';
 import {MessageService} from './../../services/message.service';
@@ -11,7 +12,7 @@ import {MessageService} from './../../services/message.service';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, private common: CommonService, private database: Database,  private message: MessageService) {
+  constructor(public navCtrl: NavController, private common: CommonService, private database: Database,  private message: MessageService, private config: ConfigService) {
   }
 
   private validate(phn: string, password: string): boolean {
@@ -65,6 +66,7 @@ export class LoginPage {
 
   private postLoginActivity(data: any) {
     this.common.showPage("page-contacts");
+    this.config.updateAfterLogIn(data).then().catch();
   }
 
   private beginLogInProcess(loginObject: any) {
@@ -100,7 +102,7 @@ export class LoginPage {
   
 
   public beginLogin() {
-    let phoneNumber = $("page-login #txt_userPhoneNumber").val().trim();alert(phoneNumber);
+    let phoneNumber = $("page-login #txt_userPhoneNumber").val().trim();
     let password = $("page-login #txt_password").val().trim();
     if(this.validate(phoneNumber, password) === true) {
       this.beginLogInProcess(this.prepareLoginObject(phoneNumber, password));
