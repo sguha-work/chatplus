@@ -77,15 +77,44 @@ export class SignupPage {
     });
   }
 
-  beginSighUpProcess(signupObject: any) {
-      this.database.writeToDatabase(signupObject.phoneNumber, signupObject).then(()=>{
-        alert(this.message.getMessage("SIGN_UP_SUCCESS"));
-        this.common.showPage("page-login");
-        this.enableSignUpButton();
-      }).catch(() => {
-        alert(this.message.getMessage("UNABLE_TO_CONTACT_DATABASE"));
-        this.enableSignUpButton();
+  checkIfUserExists(phoneNumber): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.database.getFromDatabase(phoneNumber).then((data) => {
+        if(data === null) {
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      }).catch((message) => {
+        reject(this.message.getMessage("UNABLE_TO_CONTACT_DATABASE"));
       });
+    });
+  }
+
+  beginSighUpProcess(signupObject: any) {
+    this.checkIfUserExists(signupObject.phoneNumber).then((isUserExists) => {
+      if(isUserExists) {
+        if (confirm(this.message.getMessage("USER_ALREADY_EXISTS"))) {
+          this.common.showPage("page-login");
+        } else {
+
+        }
+      } else {
+        this.database.writeToDatabase(signupObject.phoneNumber, signupObject).then(()=>{
+          alert(this.message.getMessage("SIGN_UP_SUCCESS"));
+          this.common.showPage("page-login");
+          this.enableSignUpButton();
+        }).catch(() => {
+          alert(this.message.getMessage("UNABLE_TO_CONTACT_DATABASE"));
+          this.enableSignUpButton();
+        });
+      }
+      this.enableSignUpButton();
+    }).catch((message) => {
+      alert(message);
+      this.enableSignUpButton();
+    });
+      
   }
 
   beginSignUp() {

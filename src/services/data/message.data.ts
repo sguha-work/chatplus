@@ -46,6 +46,10 @@ const data = `{
     "SIGN_UP_SUCCESS": {
         "en": "Sign up successfull. Click Ok to go to sign in page",
         "hin": ""
+    },
+    "USER_ALREADY_EXISTS": {
+        "en": "The provided phone number already exists in database, want to login?",
+        "hin": ""
     }
 }`;
 export class MessageData {
